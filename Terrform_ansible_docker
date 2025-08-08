@@ -1,0 +1,70 @@
+Terraform
+==============================
+
+provider "aws"{
+region = "us-west2"
+}
+resource "aws_instance" "example"{
+count =2
+ami "ami-ocj909k009hjdyfi0"
+instance_type="t2.micro"
+tags = "exampleinstance"
+}
+}
+
+touch main.tf
+provider "aws"
+region = "us-west2"
+
+cd terraform-ec2-setup
+mkdir terraform
+cd terraform
+
+==============================
+-----Docker------------
+==============================
+
+#!/bin/bash
+while true;do
+echo "ping"
+sleep 1
+done
+
+FROM Ubuntu:22.04
+step to /app folder
+COPY script.sh/app/script.sh
+VOLUME /app
+EXPOSE 8080
+from step1 at launch.
+CMD["/app/script.sh"] 
+
+
+------------------------------
+Ansible
+-------------------
+name:Get current pip version
+    command:pip show pip
+register:pip_info
+
+name:Manage pip on ubuntu host
+hosts: ubuntu_host
+become:yes
+tasks:
+-name:query current pip version
+ ansible.builtin.debug:
+   msg:"current pipversion:
+{{pip_versio_output.stdout}}"
+ -nameupgrade pip package
+ansible.builtin.pip:
+ name:pip
+state:latest 
+register:pip_upgrade_status
+-name:query pip version after upgrade
+
+ansible.builtin.shell:pip --version
+register:
+upgraded_pip_vesion_output
+changed_when:false
+-name:print updated pip version
+ansible.builtin.debug:
+msg:updated pip version:{{updated_pip_version_output.stdout}}"
